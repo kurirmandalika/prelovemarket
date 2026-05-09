@@ -1,26 +1,45 @@
-FROM php:8.2-cli
-
-# install system deps
-RUN apt-get update && apt-get install -y \
-    git curl zip unzip libzip-dev \
-    && docker-php-ext-install pdo pdo_mysql zip
-
-# install composer
-COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
+FROM node:22-bookworm-slim AS assets
 
 WORKDIR /app
 
-# copy project
+COPY package.json package-lock.json ./
+RUN npm ci
+
+COPY resources ./resources
+COPY postcss.config.js tailwind.config.js vite.config.js ./
+RUN npm run build
+
+FROM php:8.3-cli
+
+ENV COMPOSER_ALLOW_SUPERUSER=1
+
+WORKDIR /app
+
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends \
+        git \
+        curl \
+        zip \
+        unzip \
+        libzip-dev \
+    && docker-php-ext-install pdo pdo_mysql zip \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
+
+COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
+
+COPY composer.json composer.lock ./
+RUN composer install --no-dev --no-interaction --prefer-dist --optimize-autoloader --no-scripts
+
 COPY . .
+COPY --from=assets /app/public/build ./public/build
 
-# install dependency
-RUN composer install --no-dev --optimize-autoloader
+RUN composer dump-autoload --optimize --no-scripts \
+    && php artisan package:discover --ansi \
+    && php artisan config:clear \
+    && php artisan route:clear \
+    && php artisan view:clear
 
-# install node + build assets
-RUN apt-get install -y nodejs npm
-RUN npm install && npm run build
-
-# expose port
 EXPOSE 10000
 
-CMD php artisan serve --host=0.0.0.0 --port=10000
+CMD ["sh", "-c", "php artisan serve --host=0.0.0.0 --port=${PORT:-10000}"]
