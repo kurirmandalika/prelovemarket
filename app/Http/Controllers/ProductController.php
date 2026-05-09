@@ -20,6 +20,7 @@ class ProductController extends Controller
 
         $categories = Category::query()
             ->withCount(['products' => fn ($query) => $query->where('status', 'available')])
+            ->whereHas('products', fn ($query) => $query->where('status', 'available'))
             ->orderBy('name')
             ->get();
 
