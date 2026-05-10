@@ -22,7 +22,9 @@ RUN apt-get update \
         zip \
         unzip \
         libzip-dev \
-    && docker-php-ext-install pdo pdo_mysql zip \
+        libpq-dev \
+        libsqlite3-dev \
+    && docker-php-ext-install pdo pdo_mysql pdo_pgsql pdo_sqlite zip \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
@@ -42,4 +44,4 @@ RUN composer dump-autoload --optimize --no-scripts \
 
 EXPOSE 10000
 
-CMD ["sh", "-c", "php artisan serve --host=0.0.0.0 --port=${PORT:-10000}"]
+CMD ["sh", "/app/docker/start.sh"]
