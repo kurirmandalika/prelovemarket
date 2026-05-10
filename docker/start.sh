@@ -72,6 +72,11 @@ php artisan route:clear
 php artisan view:clear
 php artisan storage:link --force || true
 php artisan migrate --force --no-interaction
+
+if [ "${SEED_SAMPLE_DATA:-true}" = "true" ]; then
+    php artisan preloved:seed-samples --no-interaction
+fi
+
 php artisan config:cache
 php artisan route:cache || true
 php artisan view:cache
