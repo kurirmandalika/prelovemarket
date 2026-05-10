@@ -8,41 +8,41 @@
         class="relative overflow-hidden bg-zinc-950 text-white"
         style="background-image: linear-gradient(90deg, rgba(9, 9, 11, 0.92) 0%, rgba(9, 9, 11, 0.76) 46%, rgba(9, 9, 11, 0.35) 100%), url('https://images.unsplash.com/photo-1483985988355-763728e1935?auto=format&fit=crop&w=1800&q=85'); background-position: center; background-size: cover;"
     >
-        <div class="mx-auto max-w-7xl px-4 py-14 sm:px-6 sm:py-16 lg:px-8 lg:py-20">
+        <div class="mx-auto max-w-7xl px-4 py-10 sm:px-6 sm:py-16 lg:px-8 lg:py-20">
             <div class="max-w-3xl">
-                <p class="text-sm font-extrabold uppercase text-emerald-300">Marketplace preloved terkurasi</p>
-                <h1 class="mt-4 text-4xl font-extrabold leading-tight text-white sm:text-5xl lg:text-6xl">Preloved Market</h1>
-                <p class="mt-5 max-w-2xl text-base leading-7 text-zinc-100 sm:text-lg">
+                <p class="text-xs font-extrabold uppercase text-emerald-300 sm:text-sm">Marketplace preloved terkurasi</p>
+                <h1 class="mt-3 text-3xl font-extrabold leading-tight text-white sm:mt-4 sm:text-5xl lg:text-6xl">Preloved Market</h1>
+                <p class="mt-4 max-w-2xl text-sm leading-6 text-zinc-100 sm:mt-5 sm:text-lg sm:leading-7">
                     Beli barang second berkualitas dengan tampilan produk yang jelas, kondisi transparan, dan alur pemesanan yang rapi dari penjual lokal.
                 </p>
 
-                <div class="mt-8 flex flex-col gap-3 sm:flex-row">
-                    <a href="{{ route('products.index') }}" class="inline-flex items-center justify-center rounded-md bg-emerald-500 px-5 py-3 text-sm font-extrabold text-zinc-950 shadow-lg shadow-emerald-950/30 transition hover:bg-emerald-400">
+                <div class="mt-6 grid gap-3 sm:mt-8 sm:flex sm:flex-row">
+                    <a href="{{ route('products.index') }}" class="inline-flex min-h-12 items-center justify-center rounded-md bg-emerald-500 px-5 py-3 text-sm font-extrabold text-zinc-950 shadow-lg shadow-emerald-950/30 transition hover:bg-emerald-400">
                         Jelajah Produk
                     </a>
                     @guest
-                        <a href="{{ route('register') }}" class="inline-flex items-center justify-center rounded-md border border-white/40 bg-white/10 px-5 py-3 text-sm font-extrabold text-white backdrop-blur transition hover:border-white hover:bg-white/20">
+                        <a href="{{ route('register') }}" class="inline-flex min-h-12 items-center justify-center rounded-md border border-white/40 bg-white/10 px-5 py-3 text-sm font-extrabold text-white backdrop-blur transition hover:border-white hover:bg-white/20">
                             Buka Toko Sekarang
                         </a>
                     @else
-                        <a href="{{ route('dashboard.products.create') }}" class="inline-flex items-center justify-center rounded-md border border-white/40 bg-white/10 px-5 py-3 text-sm font-extrabold text-white backdrop-blur transition hover:border-white hover:bg-white/20">
+                        <a href="{{ route('dashboard.products.create') }}" class="inline-flex min-h-12 items-center justify-center rounded-md border border-white/40 bg-white/10 px-5 py-3 text-sm font-extrabold text-white backdrop-blur transition hover:border-white hover:bg-white/20">
                             Tambah Produk
                         </a>
                     @endguest
                 </div>
 
-                <div class="mt-10 grid max-w-2xl gap-3 sm:grid-cols-3">
-                    <div class="border-l-2 border-emerald-400 pl-4">
-                        <p class="text-2xl font-extrabold">{{ $products->count() }}+</p>
-                        <p class="mt-1 text-sm font-medium text-zinc-200">Pilihan terbaru</p>
+                <div class="mt-8 grid max-w-2xl grid-cols-3 gap-2 sm:mt-10 sm:gap-3">
+                    <div class="rounded-md bg-white/10 p-3 backdrop-blur sm:border-l-2 sm:border-emerald-400 sm:bg-transparent sm:pl-4">
+                        <p class="text-xl font-extrabold sm:text-2xl">{{ $products->count() }}+</p>
+                        <p class="mt-1 text-xs font-medium text-zinc-200 sm:text-sm">Pilihan</p>
                     </div>
-                    <div class="border-l-2 border-amber-300 pl-4">
-                        <p class="text-2xl font-extrabold">{{ $categories->count() }}</p>
-                        <p class="mt-1 text-sm font-medium text-zinc-200">Kategori aktif</p>
+                    <div class="rounded-md bg-white/10 p-3 backdrop-blur sm:border-l-2 sm:border-amber-300 sm:bg-transparent sm:pl-4">
+                        <p class="text-xl font-extrabold sm:text-2xl">{{ $categories->count() }}</p>
+                        <p class="mt-1 text-xs font-medium text-zinc-200 sm:text-sm">Kategori</p>
                     </div>
-                    <div class="border-l-2 border-sky-300 pl-4">
-                        <p class="text-2xl font-extrabold">24/7</p>
-                        <p class="mt-1 text-sm font-medium text-zinc-200">Etalase online</p>
+                    <div class="rounded-md bg-white/10 p-3 backdrop-blur sm:border-l-2 sm:border-sky-300 sm:bg-transparent sm:pl-4">
+                        <p class="text-xl font-extrabold sm:text-2xl">24/7</p>
+                        <p class="mt-1 text-xs font-medium text-zinc-200 sm:text-sm">Online</p>
                     </div>
                 </div>
             </div>
@@ -50,14 +50,14 @@
     </section>
 
     <section class="border-b border-zinc-200 bg-white">
-        <div class="mx-auto grid max-w-7xl gap-5 px-4 py-6 sm:px-6 lg:grid-cols-[1.2fr_0.8fr] lg:px-8">
+        <div class="mx-auto grid max-w-7xl gap-4 px-4 py-5 sm:px-6 sm:py-6 lg:grid-cols-[1.2fr_0.8fr] lg:px-8">
             <form action="{{ route('products.index') }}" method="GET" class="grid gap-3 sm:grid-cols-[1fr_auto]">
                 <label for="home-search" class="sr-only">Cari produk preloved</label>
                 <input id="home-search" type="search" name="search" placeholder="Cari jaket denim, meja kopi, headphone..." class="h-12 w-full rounded-md border-zinc-300 text-sm font-medium shadow-sm focus:border-emerald-600 focus:ring-emerald-600">
                 <button type="submit" class="h-12 rounded-md bg-zinc-950 px-6 text-sm font-extrabold text-white shadow-sm transition hover:bg-emerald-700">Cari Produk</button>
             </form>
 
-            <div class="grid grid-cols-3 gap-3 text-center">
+            <div class="grid gap-2 text-center sm:grid-cols-3 sm:gap-3">
                 <div class="rounded-md bg-zinc-50 p-3">
                     <p class="text-sm font-extrabold text-zinc-950">Kurasi</p>
                     <p class="mt-1 text-xs font-medium text-zinc-500">Kondisi jelas</p>
@@ -74,7 +74,7 @@
         </div>
     </section>
 
-    <section class="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
+    <section class="mx-auto max-w-7xl px-4 py-8 sm:px-6 sm:py-10 lg:px-8">
         <div class="mb-6 flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
             <div>
                 <p class="text-sm font-extrabold uppercase text-emerald-700">Jelajah cepat</p>
@@ -103,7 +103,7 @@
     </section>
 
     <section class="border-y border-zinc-200 bg-white">
-        <div class="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
+        <div class="mx-auto max-w-7xl px-4 py-8 sm:px-6 sm:py-10 lg:px-8">
             <div class="mb-6 flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
                 <div>
                     <p class="text-sm font-extrabold uppercase text-emerald-700">Etalase terbaru</p>
@@ -125,8 +125,8 @@
         </div>
     </section>
 
-    <section class="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
-        <div class="grid gap-8 rounded-md bg-zinc-950 px-5 py-8 text-white sm:px-8 lg:grid-cols-[1fr_auto] lg:items-center">
+    <section class="mx-auto max-w-7xl px-4 py-8 sm:px-6 sm:py-12 lg:px-8">
+        <div class="grid gap-6 rounded-md bg-zinc-950 px-5 py-7 text-white sm:gap-8 sm:px-8 sm:py-8 lg:grid-cols-[1fr_auto] lg:items-center">
             <div>
                 <p class="text-sm font-extrabold uppercase text-amber-300">Untuk penjual</p>
                 <h2 class="mt-3 text-2xl font-extrabold sm:text-3xl">Ubah barang yang jarang dipakai jadi etalase profesional.</h2>

@@ -16,8 +16,8 @@
     @endphp
 
     <section class="border-b border-zinc-200 bg-white">
-        <div class="mx-auto max-w-7xl px-4 py-5 sm:px-6 lg:px-8">
-            <div class="flex flex-wrap items-center gap-2 text-sm font-bold text-zinc-500">
+        <div class="mx-auto max-w-7xl px-4 py-4 sm:px-6 sm:py-5 lg:px-8">
+            <div class="flex items-center gap-2 overflow-x-auto whitespace-nowrap text-sm font-bold text-zinc-500">
                 <a href="{{ route('home') }}" class="transition hover:text-emerald-700">Home</a>
                 <span>/</span>
                 <a href="{{ route('products.index') }}" class="transition hover:text-emerald-700">Produk</a>
@@ -27,49 +27,49 @@
         </div>
     </section>
 
-    <section class="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
-        <div class="grid gap-8 lg:grid-cols-[1.05fr_0.95fr]">
+    <section class="mx-auto max-w-7xl px-4 py-6 sm:px-6 sm:py-8 lg:px-8">
+        <div class="grid gap-6 lg:grid-cols-[1.05fr_0.95fr] lg:gap-8">
             <div class="space-y-5">
                 <div class="overflow-hidden rounded-md border border-zinc-200 bg-white shadow-sm">
-                    <div class="relative aspect-[4/3] bg-zinc-100">
+                    <div class="relative aspect-[1/1] bg-zinc-100 sm:aspect-[4/3]">
                         <x-product-image :product="$product" loading="eager" class="h-full w-full object-cover" />
-                        <div class="absolute left-4 top-4 flex flex-wrap gap-2">
+                        <div class="absolute left-3 top-3 flex flex-wrap gap-2 sm:left-4 sm:top-4">
                             <span class="rounded-full px-3 py-1 text-xs font-extrabold ring-1 {{ $conditionClasses[$product->condition] ?? 'bg-zinc-100 text-zinc-700 ring-zinc-200' }}">{{ $product->conditionLabel() }}</span>
                             <span class="rounded-full px-3 py-1 text-xs font-extrabold {{ $product->status === 'available' ? 'bg-emerald-600 text-white' : 'bg-zinc-900 text-white' }}">{{ $product->statusLabel() }}</span>
                         </div>
                     </div>
                 </div>
 
-                <div class="grid gap-4 sm:grid-cols-3">
-                    <div class="rounded-md border border-zinc-200 bg-white p-4 shadow-sm">
+                <div class="grid gap-3 sm:grid-cols-3 sm:gap-4">
+                    <div class="rounded-md border border-zinc-200 bg-white p-3 shadow-sm sm:p-4">
                         <p class="text-xs font-extrabold uppercase text-zinc-500">Kategori</p>
                         <p class="mt-2 text-sm font-extrabold text-zinc-950">{{ $product->category->name }}</p>
                     </div>
-                    <div class="rounded-md border border-zinc-200 bg-white p-4 shadow-sm">
+                    <div class="rounded-md border border-zinc-200 bg-white p-3 shadow-sm sm:p-4">
                         <p class="text-xs font-extrabold uppercase text-zinc-500">Lokasi</p>
                         <p class="mt-2 text-sm font-extrabold text-zinc-950">{{ $product->location }}</p>
                     </div>
-                    <div class="rounded-md border border-zinc-200 bg-white p-4 shadow-sm">
+                    <div class="rounded-md border border-zinc-200 bg-white p-3 shadow-sm sm:p-4">
                         <p class="text-xs font-extrabold uppercase text-zinc-500">Penjual</p>
                         <p class="mt-2 truncate text-sm font-extrabold text-zinc-950">{{ $sellerName }}</p>
                     </div>
                 </div>
 
-                <div class="rounded-md border border-zinc-200 bg-white p-5 shadow-sm">
+                <div class="rounded-md border border-zinc-200 bg-white p-4 shadow-sm sm:p-5">
                     <h2 class="text-lg font-extrabold text-zinc-950">Deskripsi Produk</h2>
                     <p class="mt-3 whitespace-pre-line text-sm leading-7 text-zinc-600">{{ $product->description }}</p>
                 </div>
             </div>
 
             <div class="space-y-5">
-                <div class="rounded-md border border-zinc-200 bg-white p-5 shadow-sm lg:sticky lg:top-28">
+                <div class="rounded-md border border-zinc-200 bg-white p-4 shadow-sm sm:p-5 lg:sticky lg:top-28">
                     <div class="flex flex-wrap gap-2">
                         <a href="{{ route('categories.show', $product->category) }}" class="rounded-full bg-zinc-100 px-3 py-1 text-xs font-extrabold text-zinc-700 ring-1 ring-zinc-200">{{ $product->category->name }}</a>
                         <span class="rounded-full bg-emerald-50 px-3 py-1 text-xs font-extrabold text-emerald-800 ring-1 ring-emerald-200">Siap dikirim</span>
                     </div>
 
-                    <h1 class="mt-4 text-3xl font-extrabold leading-tight text-zinc-950 sm:text-4xl">{{ $product->title }}</h1>
-                    <p class="mt-4 text-3xl font-extrabold text-emerald-700">{{ $product->formattedPrice() }}</p>
+                    <h1 class="mt-4 text-2xl font-extrabold leading-tight text-zinc-950 sm:text-4xl">{{ $product->title }}</h1>
+                    <p class="mt-3 text-2xl font-extrabold text-emerald-700 sm:mt-4 sm:text-3xl">{{ $product->formattedPrice() }}</p>
                     <p class="mt-3 text-sm font-medium leading-6 text-zinc-500">Produk preloved dari {{ $sellerName }} di {{ $product->location }}.</p>
 
                     <div class="mt-5 rounded-md bg-zinc-50 p-4">
@@ -90,7 +90,7 @@
 
                         @guest
                             <p class="mt-2 text-sm leading-6 text-zinc-600">Login untuk membuat pesanan dan memilih ekspedisi pengiriman.</p>
-                            <a href="{{ route('login') }}" class="mt-4 inline-flex w-full items-center justify-center rounded-md bg-zinc-950 px-4 py-3 text-sm font-extrabold text-white transition hover:bg-emerald-700">Login untuk Membeli</a>
+                            <a href="{{ route('login') }}" class="mt-4 inline-flex min-h-12 w-full items-center justify-center rounded-md bg-zinc-950 px-4 py-3 text-sm font-extrabold text-white transition hover:bg-emerald-700">Login untuk Membeli</a>
                         @else
                             @if ($canOrder)
                                 <form action="{{ route('orders.store', $product) }}" method="POST" class="mt-4 space-y-4">
@@ -124,11 +124,11 @@
                                         @enderror
                                     </div>
 
-                                    <button type="submit" class="w-full rounded-md bg-emerald-700 px-4 py-3 text-sm font-extrabold text-white shadow-sm transition hover:bg-emerald-800">Buat Pesanan</button>
+                                    <button type="submit" class="min-h-12 w-full rounded-md bg-emerald-700 px-4 py-3 text-sm font-extrabold text-white shadow-sm transition hover:bg-emerald-800">Buat Pesanan</button>
                                 </form>
                             @elseif (auth()->id() === $product->user_id)
                                 <p class="mt-2 text-sm leading-6 text-zinc-600">Ini produk milikmu. Kelola produk dari dashboard penjual.</p>
-                                <a href="{{ route('dashboard.products.edit', $product) }}" class="mt-4 inline-flex w-full items-center justify-center rounded-md bg-zinc-950 px-4 py-3 text-sm font-extrabold text-white transition hover:bg-zinc-800">Edit Produk</a>
+                                <a href="{{ route('dashboard.products.edit', $product) }}" class="mt-4 inline-flex min-h-12 w-full items-center justify-center rounded-md bg-zinc-950 px-4 py-3 text-sm font-extrabold text-white transition hover:bg-zinc-800">Edit Produk</a>
                             @else
                                 <p class="mt-2 text-sm leading-6 text-zinc-600">Produk ini sudah terjual.</p>
                             @endif

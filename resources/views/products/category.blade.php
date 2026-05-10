@@ -5,20 +5,20 @@
 
 @section('content')
     <section class="border-b border-zinc-200 bg-white">
-        <div class="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
+        <div class="mx-auto max-w-7xl px-4 py-6 sm:px-6 sm:py-8 lg:px-8">
             <div class="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
                 <div>
-                    <p class="text-sm font-extrabold uppercase text-emerald-700">Kategori</p>
-                    <h1 class="mt-2 text-3xl font-extrabold text-zinc-950 sm:text-4xl">{{ $category->name }}</h1>
+                    <p class="text-xs font-extrabold uppercase text-emerald-700 sm:text-sm">Kategori</p>
+                    <h1 class="mt-2 text-2xl font-extrabold text-zinc-950 sm:text-4xl">{{ $category->name }}</h1>
                     <p class="mt-3 text-sm font-medium text-zinc-500">{{ $products->total() }} produk tersedia dalam kategori ini.</p>
                 </div>
-                <a href="{{ route('products.index') }}" class="inline-flex items-center justify-center rounded-md border border-zinc-200 bg-white px-4 py-2.5 text-sm font-extrabold text-zinc-700 shadow-sm transition hover:border-emerald-200 hover:bg-emerald-50 hover:text-emerald-800">Semua produk</a>
+                <a href="{{ route('products.index') }}" class="inline-flex min-h-11 items-center justify-center rounded-md border border-zinc-200 bg-white px-4 py-2.5 text-sm font-extrabold text-zinc-700 shadow-sm transition hover:border-emerald-200 hover:bg-emerald-50 hover:text-emerald-800">Semua produk</a>
             </div>
         </div>
     </section>
 
-    <section class="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
-        <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+    <section class="mx-auto max-w-7xl px-4 py-6 sm:px-6 sm:py-8 lg:px-8">
+        <div class="grid gap-4 sm:grid-cols-2 sm:gap-5 lg:grid-cols-4">
             @forelse ($products as $product)
                 <x-product-card :product="$product" />
             @empty
